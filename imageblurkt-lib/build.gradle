@@ -11,7 +11,7 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "1.0.0-alpha01"
+        versionName "1.0.0-alpha02"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -74,7 +74,7 @@ afterEvaluate {
 
                 groupId = 'com.github.orlando-dev-code'
                 artifactId = 'imageblurkt-lib'
-                version = '1.0.0-alpha01'
+                version = '1.0.0-alpha02'
             }
         }
     }
