@@ -2,7 +2,6 @@
 buildscript {
     ext {
         compose_version = '1.1.0-beta02'
-        coil_version = '1.3.2'
     }
     repositories {
         google()
