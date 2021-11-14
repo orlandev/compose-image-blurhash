@@ -11,6 +11,8 @@ You can find more information here [github](https://github.com/coil-kt/coil)!
 ## More from Blurhash
 BlurHash is a compact representation of a placeholder for an image.
 
+<img src="media/blurhash_cover.jpg" width="600">
+
 You can also see nice examples and try it out yourself at 
 [blurha.sh](http://blurha.sh/)!
 
