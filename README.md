@@ -1,6 +1,6 @@
 # compose-image-blurhash [![](https://jitpack.io/v/orlando-dev-code/compose-image-blurhash.svg)](https://jitpack.io/#orlando-dev-code/compose-image-blurhash)
 
-Compose ImageBlurhash is a Jetpack Compose component with the necessary implementation to display a blurred image while the real image is loaded from the internet.
+ComposeImageBlurhash is a Jetpack Compose component with the necessary implementation to display a blurred image while the real image is loaded from the internet.
 Use blurhash and coil to ensure good performance.
 
 ## Coil
@@ -10,6 +10,8 @@ You can find more information here [github](https://github.com/coil-kt/coil)!
 
 ## More from Blurhash
 BlurHash is a compact representation of a placeholder for an image.
+
+<img src="media/blurhash_cover.jpg" width="600">
 
 You can also see nice examples and try it out yourself at 
 [blurha.sh](http://blurha.sh/)!
