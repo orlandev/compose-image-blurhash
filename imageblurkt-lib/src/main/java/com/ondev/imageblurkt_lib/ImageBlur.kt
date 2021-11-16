@@ -9,9 +9,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.core.graphics.drawable.toDrawable
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.ondev.imageblurkt_lib.R
-import com.ondev.imageblurkt_lib.blurhash.BlurHashDecoder
-
+import com.ondev.blurhashkt.BlurhashDecoder
 
 @ExperimentalCoilApi
 @Composable
@@ -23,7 +21,7 @@ fun ImageBlur(
     resources: Resources,
     contentDescription: String? = null
 ) {
-    val bitmap = BlurHashDecoder.decode(blurhash, 4, 3)
+    val bitmap = BlurhashDecoder.decode(blurhash, 4, 3)
     val errorNoImage = R.drawable.no_image
     Image(
         modifier = modifier,
