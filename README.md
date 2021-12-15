@@ -56,21 +56,41 @@ Inmersoft - At Immersoft we use ComposeImageBlurhash for a better user experienc
         @ExperimentalCoilApi
         @Composable
         fun TestImageBlurhash(resources: Resources) {
-              val imageUrl = "https://blurha.sh/assets/images/img1.jpg"
-              val blurhash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
-              Card(
-                  modifier = Modifier
-                  .height(300.dp)
-                  .fillMaxWidth()
-                  .padding(8.dp),
-                  shape = MaterialTheme.shapes.small
-              ) {
-                ImageBlur(
-                      modifier = Modifier.fillMaxSize(),
-                      blurhash = blurhash,
-                      imageUrl = imageUrl,
-                      resources = resources,
-                      contentDescription = "Image content description"
-                  )
-              }
+             
+        val imageUrl = "https://blurha.sh/assets/images/img1.jpg"
+        val blurhash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
+         Column {
+                Card(
+                    modifier = Modifier
+                        .height(300.dp)
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    shape = MaterialTheme.shapes.small
+                 ) {
+                         ImageBlur(
+                                modifier = Modifier.fillMaxSize(),
+                                blurhash = blurhash,
+                                imageUrl = imageUrl,
+                                 resources = resources,
+                                contentDescription = "Image Blurhash Used"
+                         )
+                 }
+
+                Card(
+                         modifier = Modifier
+                                .height(300.dp)
+                                .fillMaxWidth()
+                                .padding(8.dp),
+                        shape = MaterialTheme.shapes.small
+                      ) {
+                        ImageBlur(
+                                modifier = Modifier.fillMaxSize(),
+                                blurhash = blurhash,
+                                 imageUrl = imageUrl,
+                                 notImageFoundRes = R.drawable.ic_no_image,
+                                 resources = resources,
+                                 contentDescription = "Image Blurhash Used"
+                        )
+                  }
+             }
         }
