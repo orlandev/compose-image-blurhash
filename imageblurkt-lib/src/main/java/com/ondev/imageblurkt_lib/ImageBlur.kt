@@ -2,6 +2,7 @@ package com.ondev.imageblurkt_lib
 
 
 import android.content.res.Resources
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -32,6 +33,34 @@ fun ImageBlur(
                 else -> placeholder(errorNoImage)
             }
             error(errorNoImage)
+            crossfade(crossFadeAnimDuration)
+        }),
+        contentDescription = contentDescription
+    )
+}
+
+@ExperimentalCoilApi
+@Composable
+fun ImageBlur(
+    modifier: Modifier = Modifier,
+    blurhash: String,
+    imageUrl: String,
+    crossFadeAnimDuration: Int = 700,
+    resources: Resources,
+    @DrawableRes
+    notImageFoundRes: Int,
+    contentDescription: String? = null
+) {
+    val bitmap = BlurhashDecoder.decode(blurhash, 4, 3)
+    Image(
+        modifier = modifier,
+        contentScale = ContentScale.Crop,
+        painter = rememberImagePainter(imageUrl, builder = {
+            when {
+                bitmap != null -> placeholder(bitmap.toDrawable(resources))
+                else -> placeholder(notImageFoundRes)
+            }
+            error(notImageFoundRes)
             crossfade(crossFadeAnimDuration)
         }),
         contentDescription = contentDescription

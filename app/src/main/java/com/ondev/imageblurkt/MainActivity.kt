@@ -4,17 +4,12 @@ import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.ondev.imageblurkt.ui.theme.ImageBlurKtTheme
@@ -41,20 +36,39 @@ fun TestImageBlur(resources: Resources) {
 
     val imageUrl = "https://blurha.sh/assets/images/img1.jpg"
     val blurhash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
-    Card(
-        modifier = Modifier
-            .height(300.dp)
-            .fillMaxWidth()
-            .padding(8.dp),
-        shape = MaterialTheme.shapes.small
-    ) {
-        ImageBlur(
-            modifier = Modifier.fillMaxSize(),
-            blurhash = blurhash,
-            imageUrl = imageUrl,
-            resources = resources,
-            contentDescription = "Image Blurhash Used"
-        )
+    Column {
+        Card(
+            modifier = Modifier
+                .height(300.dp)
+                .fillMaxWidth()
+                .padding(8.dp),
+            shape = MaterialTheme.shapes.small
+        ) {
+            ImageBlur(
+                modifier = Modifier.fillMaxSize(),
+                blurhash = blurhash,
+                imageUrl = imageUrl,
+                resources = resources,
+                contentDescription = "Image Blurhash Used"
+            )
+        }
+
+        Card(
+            modifier = Modifier
+                .height(300.dp)
+                .fillMaxWidth()
+                .padding(8.dp),
+            shape = MaterialTheme.shapes.small
+        ) {
+            ImageBlur(
+                modifier = Modifier.fillMaxSize(),
+                blurhash = blurhash,
+                imageUrl = imageUrl,
+                notImageFoundRes = R.drawable.ic_no_image,
+                resources = resources,
+                contentDescription = "Image Blurhash Used"
+            )
+        }
     }
 
 }
