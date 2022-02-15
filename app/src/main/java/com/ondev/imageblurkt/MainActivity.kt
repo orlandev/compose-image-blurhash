@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.ondev.imageblurkt.ui.theme.ImageBlurKtTheme
 import com.ondev.imageblurkt_lib.ImageBlur
+import com.ondev.imageblurkt_lib.ImageOnlyBlur
 
 @ExperimentalCoilApi
 class MainActivity : ComponentActivity() {
@@ -66,6 +67,19 @@ fun TestImageBlur(resources: Resources) {
                 imageUrl = imageUrl,
                 notImageFoundRes = R.drawable.ic_no_image,
                 resources = resources,
+                contentDescription = "Image Blurhash Used"
+            )
+        }
+        Card(
+            modifier = Modifier
+                .height(300.dp)
+                .fillMaxWidth()
+                .padding(8.dp),
+            shape = MaterialTheme.shapes.small
+        ) {
+            ImageOnlyBlur(
+                modifier = Modifier.fillMaxSize(),
+                blurhash = blurhash,
                 contentDescription = "Image Blurhash Used"
             )
         }

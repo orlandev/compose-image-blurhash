@@ -6,6 +6,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.core.graphics.drawable.toDrawable
 import coil.annotation.ExperimentalCoilApi
@@ -63,6 +64,22 @@ fun ImageBlur(
             error(notImageFoundRes)
             crossfade(crossFadeAnimDuration)
         }),
+        contentDescription = contentDescription
+    )
+}
+
+@ExperimentalCoilApi
+@Composable
+fun ImageOnlyBlur(
+    modifier: Modifier = Modifier,
+    blurhash: String,
+    contentDescription: String? = null
+) {
+    val bitmap = BlurhashDecoder.decode(blurhash, 4, 3)
+    Image(
+        bitmap = bitmap as ImageBitmap,
+        modifier = modifier,
+        contentScale = ContentScale.Crop,
         contentDescription = contentDescription
     )
 }
