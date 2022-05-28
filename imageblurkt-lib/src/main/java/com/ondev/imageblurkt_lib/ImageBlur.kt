@@ -83,12 +83,13 @@ fun AsyncImageBlur(
     resources: Resources,
     @DrawableRes
     notImageFoundRes: Int,
-    contentDescription: String? = null
+    contentDescription: String? = null,
+    contentScale: ContentScale = ContentScale.Crop
 ) {
     val bitmap = BlurhashDecoder.decode(blurHash, 4, 3)
     AsyncImage(
         modifier = modifier,
-        contentScale = ContentScale.Crop,
+        contentScale = contentScale,
         model = ImageRequest.Builder(LocalContext.current)
             .data(imageUrl)
             .placeholder(
