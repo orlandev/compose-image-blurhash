@@ -1,3 +1,5 @@
+# This documentation is obsolete... in few day will be updated.
+
 # compose-image-blurhash [![](https://jitpack.io/v/orlando-dev-code/compose-image-blurhash.svg)](https://jitpack.io/#orlando-dev-code/compose-image-blurhash)
 
 ComposeImageBlurhash is a Jetpack Compose component with the necessary implementation to display a blurred image while the real image is loaded from the internet.
