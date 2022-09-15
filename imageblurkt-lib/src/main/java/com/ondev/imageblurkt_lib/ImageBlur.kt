@@ -1,10 +1,11 @@
 package com.ondev.imageblurkt_lib
 
 
-import android.content.res.Resources
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
@@ -12,105 +13,69 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.graphics.drawable.toDrawable
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImage
-import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import com.ondev.blurhashkt.BlurhashDecoder
 
-@Deprecated("This functions is deprecated... instead use AsyncImageBlur ")
-@ExperimentalCoilApi
-@Composable
-fun ImageBlur(
-    modifier: Modifier = Modifier,
-    blurhash: String,
-    imageUrl: String,
-    crossFadeAnimDuration: Int = 700,
-    resources: Resources,
-    contentDescription: String? = null
-) {
-    val bitmap = BlurhashDecoder.decode(blurhash, 4, 3)
-    val errorNoImage = R.drawable.no_image
-    Image(
-        modifier = modifier,
-        contentScale = ContentScale.Crop,
-        painter = rememberImagePainter(imageUrl, builder = {
-            when {
-                bitmap != null -> placeholder(bitmap.toDrawable(resources))
-                else -> placeholder(errorNoImage)
-            }
-            error(errorNoImage)
-            crossfade(crossFadeAnimDuration)
-        }),
-        contentDescription = contentDescription
-    )
-}
+data class IBlurModel(
+    val blurHash: String,
+    val imageUrl: String,
+)
 
-@Deprecated("This functions is deprecated... instead use AsyncImageBlur ")
-@ExperimentalCoilApi
-@Composable
-fun ImageBlur(
-    modifier: Modifier = Modifier,
-    blurhash: String,
-    imageUrl: String,
-    crossFadeAnimDuration: Int = 700,
-    resources: Resources,
-    @DrawableRes
-    notImageFoundRes: Int,
-    contentDescription: String? = null
-) {
-    val bitmap = BlurhashDecoder.decode(blurhash, 4, 3)
-    Image(
-        modifier = modifier,
-        contentScale = ContentScale.Crop,
-        painter = rememberImagePainter(imageUrl, builder = {
-            when {
-                bitmap != null -> placeholder(bitmap.toDrawable(resources))
-                else -> placeholder(notImageFoundRes)
-            }
-            error(notImageFoundRes)
-            crossfade(crossFadeAnimDuration)
-        }),
-        contentDescription = contentDescription
-    )
-}
 
 @ExperimentalCoilApi
 @Composable
-fun AsyncImageBlur(
+fun AsyncBlurImage(
     modifier: Modifier = Modifier,
-    blurHash: String,
-    imageUrl: String,
+    data: IBlurModel,
     crossFadeAnimDuration: Int = 700,
-    resources: Resources,
     @DrawableRes
     notImageFoundRes: Int,
     contentDescription: String? = null,
     contentScale: ContentScale = ContentScale.Crop
 ) {
-    val bitmap = BlurhashDecoder.decode(blurHash, 4, 3)
+    val bitmap = remember {
+        derivedStateOf {
+            BlurhashDecoder.decode(data.blurHash, 4, 3)
+        }
+    }
+
+    val context = LocalContext.current
+    val resources = LocalContext.current.resources
+
+    val model = remember {
+        derivedStateOf {
+            ImageRequest.Builder(context)
+                .data(data.imageUrl)
+                .placeholder(
+                    bitmap.value?.toDrawable(resources)
+                )
+                .fallback(bitmap.value?.toDrawable(resources))
+                .error(notImageFoundRes)
+                .crossfade(crossFadeAnimDuration)
+                .build()
+        }
+    }
+
     AsyncImage(
         modifier = modifier,
         contentScale = contentScale,
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(imageUrl)
-            .placeholder(
-                bitmap?.toDrawable(resources)
-            )
-            .fallback(bitmap?.toDrawable(resources))
-            .error(notImageFoundRes)
-            .crossfade(crossFadeAnimDuration)
-            .build(),
+        model = model.value,
         contentDescription = contentDescription
     )
 }
 
+
+/***
+ *  Show only a blurhash, not load any image from URL
+ */
 @ExperimentalCoilApi
 @Composable
-fun ImageOnlyBlur(
+fun BlurImageOnly(
     modifier: Modifier = Modifier,
-    blurhash: String,
+    data: IBlurModel,
     contentDescription: String? = null
 ) {
-    val bitmap = BlurhashDecoder.decode(blurhash, 4, 3)
+    val bitmap = BlurhashDecoder.decode(data.blurHash, 4, 3)
     if (bitmap != null)
         Image(
             bitmap = bitmap.asImageBitmap(),
@@ -119,3 +84,4 @@ fun ImageOnlyBlur(
             contentDescription = contentDescription
         )
 }
+
