@@ -36,10 +36,10 @@ Inmersoft - At Immersoft we use ComposeImageBlurhash for a better user experienc
         
 - In the build.gradle add the necessary dependencies
 
-        implementation 'com.github.orlando-dev-code:compose-image-blurhash:1.0.0-alpha02'
+        implementation 'com.github.orlando-dev-code:compose-image-blurhash:2.1.0'
 
 - Add component as required
-
+```
         class MainActivity : ComponentActivity() {
         @ExperimentalCoilApi
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ Inmersoft - At Immersoft we use ComposeImageBlurhash for a better user experienc
                 TestImageBlurLibraryTheme {
                     // A surface container using the 'background' color from the theme
                       Surface(color = MaterialTheme.colors.background) {
-                         TestImageBlurhash(resources)
+                         TestImageBlurhash()
                       }
                   }
               }
@@ -57,42 +57,23 @@ Inmersoft - At Immersoft we use ComposeImageBlurhash for a better user experienc
 
         @ExperimentalCoilApi
         @Composable
-        fun TestImageBlurhash(resources: Resources) {
+        fun TestImageBlurhash() {
              
-        val imageUrl = "https://blurha.sh/assets/images/img1.jpg"
-        val blurhash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
+        val data = IBlurModel(imageUrl = "https://blurha.sh/assets/images/img2.jpg", blurHash = "LGF5]+Yk^6#M@-5c,1J5@[or[Q6.")
          Column {
-                Card(
-                    modifier = Modifier
-                        .height(300.dp)
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    shape = MaterialTheme.shapes.small
-                 ) {
-                         ImageBlur(
-                                modifier = Modifier.fillMaxSize(),
-                                blurhash = blurhash,
-                                imageUrl = imageUrl,
-                                 resources = resources,
-                                contentDescription = "Image Blurhash Used"
-                         )
-                 }
-
-                Card(
-                         modifier = Modifier
-                                .height(300.dp)
-                                .fillMaxWidth()
-                                .padding(8.dp),
-                        shape = MaterialTheme.shapes.small
-                      ) {
-                        ImageBlur(
-                                modifier = Modifier.fillMaxSize(),
-                                blurhash = blurhash,
-                                 imageUrl = imageUrl,
-                                 notImageFoundRes = R.drawable.ic_no_image,
-                                 resources = resources,
-                                 contentDescription = "Image Blurhash Used"
-                        )
-                  }
-             }
+               Card(
+                modifier = Modifier
+                    .height(cardHeight)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = MaterialTheme.shapes.small
+            ) {
+                AsyncBlurImage(
+                    modifier = Modifier.fillMaxSize(),
+                    data = data,
+                    notImageFoundRes = R.drawable.ic_no_image,
+                    contentDescription = "Image Blurhash Used"
+                )
+            }
         }
+```
