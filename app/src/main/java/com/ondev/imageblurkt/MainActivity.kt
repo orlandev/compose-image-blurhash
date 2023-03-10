@@ -14,13 +14,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.ondev.imageblurkt.ui.theme.ImageBlurKtTheme
 import com.ondev.imageblurkt_lib.AsyncBlurImage
 import com.ondev.imageblurkt_lib.BlurImageOnly
-import com.ondev.imageblurkt_lib.IBlurModel
+import com.ondev.imageblurkt_lib.BlurModel
 import kotlin.random.Random
 
 @ExperimentalCoilApi
@@ -31,7 +30,7 @@ class MainActivity : ComponentActivity() {
             ImageBlurKtTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    val sizeList = Random.nextInt(10, 200)
+                    val sizeList = Random.nextInt(10, 20)
                     TestImageBlur(sizeList)
                 }
             }
@@ -40,20 +39,17 @@ class MainActivity : ComponentActivity() {
 }
 
 val imagesData = listOf(
-    IBlurModel(
-        imageUrl = "https://blurha.sh/assets/images/img1.jpg",
+    BlurModel(
+        imageUrl = "https://blurha.sh/12c2aca29ea896a628be.jpg",
         blurHash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
-    ),
-    IBlurModel(
-        imageUrl = "https://blurha.sh/assets/images/img2.jpg",
+    ), BlurModel(
+        imageUrl = "https://blurha.sh/e08adedc9f82ade9f9d5.jpg",
         blurHash = "LGF5]+Yk^6#M@-5c,1J5@[or[Q6."
-    ),
-    IBlurModel(
-        imageUrl = "https://blurha.sh/assets/images/img3.jpg",
+    ), BlurModel(
+        imageUrl = "https://blurha.sh/a355ab362a07a267e078.jpg",
         blurHash = "L6Pj0^i_.AyE_3t7t7R**0o#DgR4"
-    ),
-    IBlurModel(
-        imageUrl = "https://blurha.sh/assets/images/img4.jpg",
+    ), BlurModel(
+        imageUrl = "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
         blurHash = "LKO2?U%2Tw=w]~RBVZRi};RPxuwH"
     )
 )
@@ -62,7 +58,6 @@ val imagesData = listOf(
 @Composable
 fun TestImageBlur(sizeList: Int) {
 
-    val resources = LocalContext.current.resources
     val cardHeight = 200.dp
 
     LazyVerticalGrid(

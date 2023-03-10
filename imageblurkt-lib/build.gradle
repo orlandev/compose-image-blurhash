@@ -47,24 +47,30 @@ android {
 dependencies {
 
     implementation "androidx.core:core-ktx:$core_ktx"
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
 
-
-    implementation "androidx.compose.runtime:runtime:$compose_runtime"
+    implementation platform("androidx.compose:compose-bom:$compose_bom")
+    implementation "androidx.compose.foundation:foundation"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    implementation "androidx.compose.ui:ui-util"
+    implementation "androidx.compose.material:material"
+    implementation "androidx.compose.material3:material3"
+    implementation "androidx.compose.material3:material3-window-size-class"
+    implementation "androidx.compose.runtime:runtime"
     implementation "androidx.compose.compiler:compiler:$compose_compiler"
+    implementation "androidx.compose.material:material-icons-core"
+    implementation "androidx.compose.material:material-icons-extended"
+
 
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
 //
 
     //Coil Image Loader Library
-    api "io.coil-kt:coil-compose:2.1.0"
+    api "io.coil-kt:coil-compose:2.2.2"
     api 'com.github.orlandev:blurhashkt:1.0.1-alpha05'
 
 }
@@ -76,7 +82,7 @@ afterEvaluate {
 
                 groupId = 'com.github.orlandev'
                 artifactId = 'imageblurkt-lib'
-                version = '2.1.0'
+                version = '2.1.2'
             }
         }
     }
