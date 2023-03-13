@@ -19,17 +19,12 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.ondev.blurhashkt.BlurhashDecoder
 
-data class BlurModel(
-    val blurHash: String,
-    val imageUrl: String,
-)
-
 
 @ExperimentalCoilApi
 @Composable
 fun AsyncBlurImage(
     modifier: Modifier = Modifier,
-    data: BlurModel,
+    model: ImageBlurHashModel,
     crossFadeAnimDuration: Int = 700,
     notImageFoundRes: Any?,
     contentDescription: String? = null,
@@ -37,22 +32,22 @@ fun AsyncBlurImage(
 ) {
     val bitmap = remember {
         derivedStateOf {
-            BlurhashDecoder.decode(data.blurHash, 4, 3)
+            BlurhashDecoder.decode(model.blurHash, 4, 3)
         }
     }
 
     val context = LocalContext.current
 
-    val model = remember {
+    val imgRequestModel = remember {
         derivedStateOf {
-            ImageRequest.Builder(context).data(data.imageUrl).crossfade(crossFadeAnimDuration)
+            ImageRequest.Builder(context).data(model.data).crossfade(crossFadeAnimDuration)
                 .build()
         }
     }
 
     SubcomposeAsyncImage(modifier = modifier,
         contentScale = contentScale,
-        model = model.value,
+        model = imgRequestModel.value,
         contentDescription = contentDescription,
         loading = {
             Box(modifier = Modifier.fillMaxSize()) {
@@ -92,7 +87,7 @@ internal fun InternalBox() {
 @ExperimentalCoilApi
 @Composable
 fun BlurImageOnly(
-    modifier: Modifier = Modifier, data: BlurModel, contentDescription: String? = null
+    modifier: Modifier = Modifier, data: ImageBlurHashModel, contentDescription: String? = null
 ) {
     val bitmap = BlurhashDecoder.decode(data.blurHash, 4, 3)
     if (bitmap != null) Image(

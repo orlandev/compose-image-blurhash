@@ -19,7 +19,7 @@ import coil.annotation.ExperimentalCoilApi
 import com.ondev.imageblurkt.ui.theme.ImageBlurKtTheme
 import com.ondev.imageblurkt_lib.AsyncBlurImage
 import com.ondev.imageblurkt_lib.BlurImageOnly
-import com.ondev.imageblurkt_lib.BlurModel
+import com.ondev.imageblurkt_lib.ImageBlurHashModel
 import kotlin.random.Random
 
 @ExperimentalCoilApi
@@ -39,16 +39,16 @@ class MainActivity : ComponentActivity() {
 }
 
 val imagesData = listOf(
-    BlurModel(
+    ImageBlurHashModel(
         imageUrl = "https://blurha.sh/12c2aca29ea896a628be.jpg",
         blurHash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj"
-    ), BlurModel(
+    ), ImageBlurHashModel(
         imageUrl = "https://blurha.sh/e08adedc9f82ade9f9d5.jpg",
         blurHash = "LGF5]+Yk^6#M@-5c,1J5@[or[Q6."
-    ), BlurModel(
+    ), ImageBlurHashModel(
         imageUrl = "https://blurha.sh/a355ab362a07a267e078.jpg",
         blurHash = "L6Pj0^i_.AyE_3t7t7R**0o#DgR4"
-    ), BlurModel(
+    ), ImageBlurHashModel(
         imageUrl = "https://blurha.sh/ea9e499f8080ce9956a8.jpg",
         blurHash = "LKO2?U%2Tw=w]~RBVZRi};RPxuwH"
     )
