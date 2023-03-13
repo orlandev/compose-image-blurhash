@@ -57,7 +57,10 @@ Inmersoft - At Immersoft we use ComposeImageBlurhash for a better user experienc
         @Composable
         fun TestImageBlurhash() {
              
-        val data = IBlurModel(imageUrl = "https://blurha.sh/assets/images/img2.jpg", blurHash = "LGF5]+Yk^6#M@-5c,1J5@[or[Q6.")
+        val data = ImageBlurHashModel(data = "https://blurha.sh/assets/images/img2.jpg", blurHash = "LGF5]+Yk^6#M@-5c,1J5@[or[Q6.")
+        val dataInResource = ImageBlurHashModel(data = R.drawable.img.png, blurHash = "LGF5]+Yk^6#M@-5c,1J5@[or[Q6.")
+         
+         
          Column {
                Card(
                 modifier = Modifier
@@ -70,7 +73,14 @@ Inmersoft - At Immersoft we use ComposeImageBlurhash for a better user experienc
                     modifier = Modifier.fillMaxSize(),
                     data = data,
                     notImageFoundRes = R.drawable.ic_no_image,
-                    contentDescription = "Image Blurhash Used"
+                    contentDescription = "Content Description"
+                )
+                Spacer(modifier=Modifier.size(20.dp))
+                AsyncBlurImage(
+                    modifier = Modifier.fillMaxSize(),
+                    data = dataInResource,
+                    notImageFoundRes = R.drawable.ic_no_image,
+                    contentDescription = "Content Description"
                 )
             }
         }
