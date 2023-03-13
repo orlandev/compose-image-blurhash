@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.ondev.imageblurkt.ui.theme.ImageBlurKtTheme
 import com.ondev.imageblurkt_lib.AsyncImageBlurHash
-import com.ondev.imageblurkt_lib.BlurImageOnly
 import com.ondev.imageblurkt_lib.ImageBlurHashModel
+import com.ondev.imageblurkt_lib.ImageBlurOnly
 import kotlin.random.Random
 
 @ExperimentalCoilApi
@@ -92,9 +92,9 @@ fun TestImageBlur(sizeList: Int) {
                 shape = MaterialTheme.shapes.small
             ) {
                 //This is only for show a blur section.
-                BlurImageOnly(
+                ImageBlurOnly(
                     modifier = Modifier.fillMaxSize(),
-                    data = imagesData[0],
+                    data = imagesData.first(),
                     contentDescription = "Image Blurhash Used"
                 )
             }

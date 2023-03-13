@@ -86,7 +86,7 @@ internal fun InternalBox() {
  */
 @ExperimentalCoilApi
 @Composable
-fun BlurImageOnly(
+fun ImageBlurOnly(
     modifier: Modifier = Modifier, data: ImageBlurHashModel, contentDescription: String? = null
 ) {
     val bitmap = BlurhashDecoder.decode(data.blurHash, 4, 3)
