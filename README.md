@@ -69,14 +69,14 @@ Inmersoft - At Immersoft we use ComposeImageBlurhash for a better user experienc
                     .padding(8.dp),
                 shape = MaterialTheme.shapes.small
             ) {
-                AsyncBlurImage(
+                AsyncImageBlurHash(
                     modifier = Modifier.fillMaxSize(),
                     data = data,
                     notImageFoundRes = R.drawable.ic_no_image,
                     contentDescription = "Content Description"
                 )
                 Spacer(modifier=Modifier.size(20.dp))
-                AsyncBlurImage(
+                AsyncImageBlurHash(
                     modifier = Modifier.fillMaxSize(),
                     data = dataInResource,
                     notImageFoundRes = R.drawable.ic_no_image,
