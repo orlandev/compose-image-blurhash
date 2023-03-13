@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.ondev.imageblurkt.ui.theme.ImageBlurKtTheme
-import com.ondev.imageblurkt_lib.AsyncBlurImage
+import com.ondev.imageblurkt_lib.AsyncImageBlurHash
 import com.ondev.imageblurkt_lib.BlurImageOnly
 import com.ondev.imageblurkt_lib.ImageBlurHashModel
 import kotlin.random.Random
@@ -74,7 +74,7 @@ fun TestImageBlur(sizeList: Int) {
                     .padding(8.dp),
                 shape = MaterialTheme.shapes.small
             ) {
-                AsyncBlurImage(
+                AsyncImageBlurHash(
                     modifier = Modifier.fillMaxSize(),
                     model = imagesData[itemIndex],
                     notImageFoundRes = R.drawable.ic_no_image,

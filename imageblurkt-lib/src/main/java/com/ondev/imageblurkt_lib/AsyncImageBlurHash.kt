@@ -22,7 +22,7 @@ import com.ondev.blurhashkt.BlurhashDecoder
 
 @ExperimentalCoilApi
 @Composable
-fun AsyncBlurImage(
+fun AsyncImageBlurHash(
     modifier: Modifier = Modifier,
     model: ImageBlurHashModel,
     crossFadeAnimDuration: Int = 700,
