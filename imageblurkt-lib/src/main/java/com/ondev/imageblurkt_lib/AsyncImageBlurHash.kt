@@ -40,8 +40,7 @@ fun AsyncImageBlurHash(
 
     val imgRequestModel = remember {
         derivedStateOf {
-            ImageRequest.Builder(context).data(model.data).crossfade(crossFadeAnimDuration)
-                .build()
+            ImageRequest.Builder(context).data(model.data).crossfade(crossFadeAnimDuration).build()
         }
     }
 
@@ -65,7 +64,10 @@ fun AsyncImageBlurHash(
             Box(modifier = Modifier.fillMaxSize()) {
                 notImageFoundRes?.let {
                     AsyncImage(
-                        model = it, contentDescription = null, modifier = Modifier.fillMaxSize(),
+                        model = it,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
                     )
                 } ?: InternalBox()
             }

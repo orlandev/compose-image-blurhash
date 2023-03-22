@@ -82,7 +82,7 @@ afterEvaluate {
 
                 groupId = 'com.github.orlandev'
                 artifactId = 'imageblurkt-lib'
-                version = '3.0.1'
+                version = '3.0.2'
             }
         }
     }
